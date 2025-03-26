@@ -1,0 +1,31 @@
+[
+    {
+      "name": "The Legend of Zelda",
+      "hints": {
+        "platform": "Originally released on Nintendo consoles.",
+        "release": "Debuted in the mid-1980s.",
+        "genre": "A classic adventure game with puzzles.",
+        "developer": "Developed by a renowned Japanese studio."
+      }
+    },
+    {
+      "name": "Super Mario Bros",
+      "hints": {
+        "platform": "A flagship Nintendo platformer.",
+        "release": "Released in the mid-1980s.",
+        "genre": "Features a famous plumber jumping on enemies.",
+        "developer": "Produced by Nintendo."
+      }
+    },
+    {
+      "name": "Minecraft",
+      "hints": {
+        "platform": "Available on multiple platforms.",
+        "release": "Gained popularity in the late 2000s.",
+        "genre": "A sandbox game focusing on creativity and survival.",
+        "developer": "Created by Mojang."
+      }
+    }
+  ]
+  
+  

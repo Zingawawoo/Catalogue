@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Guess the Game</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Start Menu -->
+  <div id="startMenu" class="screen">
+    <h1>Welcome to the Guessing Game!</h1>
+    <button id="playButton">Play</button>
+  </div>
+  
+  <!-- Category Selection -->
+  <div id="categorySelection" class="screen" style="display: none;">
+    <h2>Select a Category</h2>
+    <button class="categoryBtn" data-category="videoGames">Video Games</button>
+    <button class="categoryBtn" data-category="movies" disabled>Movies (Coming Soon)</button>
+    <button class="categoryBtn" data-category="tv" disabled>TV Shows (Coming Soon)</button>
+  </div>
+  
+  <!-- Game Screen -->
+  <div id="gameContainer" class="screen" style="display: none;">
+    <h2>Guess the Video Game!</h2>
+    <p>Type your guess below:</p>
+    <input type="text" id="guessInput" placeholder="Enter video game name">
+    <button id="submitGuess">Submit</button>
+    <div id="result"></div>
+    <div id="hints"></div>
+    <!-- Container for hint option buttons -->
+    <div id="hintOptions"></div>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
