@@ -1,0 +1,419 @@
+[
+    {
+        "name": "Austria",
+        "hints": {
+            "landmass": "83,871 km²",
+            "religion": "Christianity",
+            "continent": "Europe",
+            "population": 9006400,
+            "currency_ranking": 14,
+            "main_sport": "Football",
+            "flag_colors": ["red", "white"],
+            "average_skin_color": "light",
+            "average_iq": 102,
+            "average_height": 178.0,
+            "average_weight": 80.0
+        }
+    },
+    {
+        "name": "Albania",
+        "hints": {
+            "landmass": "28,748 km²",
+            "religion": "Islam",
+            "continent": "Europe",
+            "population": 2877797,
+            "currency_ranking": 99,
+            "main_sport": "Football",
+            "flag_colors": ["red", "black"],
+            "average_skin_color": "light",
+            "average_iq": 90,
+            "average_height": 174.0,
+            "average_weight": 76.0
+        }
+    },
+    {
+        "name": "Andorra",
+        "hints": {
+            "landmass": "468 km²",
+            "religion": "Christianity",
+            "continent": "Europe",
+            "population": 77265,
+            "currency_ranking": 47,
+            "main_sport": "Football",
+            "flag_colors": ["blue", "yellow", "red"],
+            "average_skin_color": "light",
+            "average_iq": 98,
+            "average_height": 176.0,
+            "average_weight": 79.0
+        }
+    },
+    {
+        "name": "Armenia",
+        "hints": {
+        "landmass": "29,743 km²",
+        "religion": "Christianity",
+        "continent": "Europe/Asia",
+        "population": 2963243,
+        "currency_ranking": 86,
+        "main_sport": "Wrestling",
+        "flag_colors": ["red", "blue", "orange"],
+        "average_skin_color": "light",
+        "average_iq": 94,
+        "average_height": 174.5,
+        "average_weight": 78.0
+        }
+    },
+    {
+    "name": "Belgium",
+    "hints": {
+    "landmass": "30,689 km²",
+    "religion": "Christianity",
+    "continent": "Europe",
+    "population": 11589623,
+    "currency_ranking": 21,
+    "main_sport": "Football",
+    "flag_colors": ["black", "yellow", "red"],
+    "average_skin_color": "light",
+    "average_iq": 100,
+    "average_height": 176.0,
+    "average_weight": 79.0
+    }
+    },
+    {
+    "name": "Bulgaria",
+    "hints": {
+    "landmass": "110,994 km²",
+    "religion": "Eastern Orthodoxy",
+    "continent": "Europe",
+    "population": 6927288,
+    "currency_ranking": 71,
+    "main_sport": "Football",
+    "flag_colors": ["white", "green", "red"],
+    "average_skin_color": "light",
+    "average_iq": 93,
+    "average_height": 175.0,
+    "average_weight": 77.0
+    }
+    },
+    {
+        "name": "Croatia",
+        "hints": {
+        "landmass": "56,594 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 4047200,
+        "currency_ranking": 49,
+        "main_sport": "Football",
+        "flag_colors": ["red", "white", "blue"],
+        "average_skin_color": "light",
+        "average_iq": 99,
+        "average_height": 180.0,
+        "average_weight": 80.0
+        }
+    },
+    {
+        "name": "Cyprus",
+        "hints": {
+        "landmass": "9,251 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 1207359,
+        "currency_ranking": 58,
+        "main_sport": "Football",
+        "flag_colors": ["white", "orange", "green"],
+        "average_skin_color": "light",
+        "average_iq": 94,
+        "average_height": 176.0,
+        "average_weight": 78.0
+        }
+    },
+    {
+        "name": "Czech Republic",
+        "hints": {
+        "landmass": "78,865 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 10693939,
+        "currency_ranking": 37,
+        "main_sport": "Ice Hockey",
+        "flag_colors": ["white", "red", "blue"],
+        "average_skin_color": "light",
+        "average_iq": 98,
+        "average_height": 179.0,
+        "average_weight": 81.0
+        }
+    },
+    {
+        "name": "Denmark",
+        "hints": {
+        "landmass": "42,933 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 5868756,
+        "currency_ranking": 20,
+        "main_sport": "Football",
+        "flag_colors": ["red", "white"],
+        "average_skin_color": "light",
+        "average_iq": 99,
+        "average_height": 181.0,
+        "average_weight": 82.0
+        }
+    },
+    {
+        "name": "Estonia",
+        "hints": {
+        "landmass": "45,227 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 1324820,
+        "currency_ranking": 55,
+        "main_sport": "Basketball",
+        "flag_colors": ["blue", "black", "white"],
+        "average_skin_color": "light",
+        "average_iq": 99,
+        "average_height": 180.0,
+        "average_weight": 79.0
+        }
+    },
+    {
+        "name": "England",
+        "hints": {
+        "landmass": "130,279 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 56489800,
+        "currency_ranking": 6,
+        "main_sport": "Football",
+        "flag_colors": ["white", "red"],
+        "average_skin_color": "light",
+        "average_iq": 100,
+        "average_height": 177.5,
+        "average_weight": 80.0
+        }
+    },
+    {
+        "name": "Finland",
+        "hints": {
+        "landmass": "338,424 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 5540720,
+        "currency_ranking": 22,
+        "main_sport": "Ice Hockey",
+        "flag_colors": ["blue", "white"],
+        "average_skin_color": "light",
+        "average_iq": 101,
+        "average_height": 179.5,
+        "average_weight": 81.0
+        }
+    },
+    {
+        "name": "France",
+        "hints": {
+        "landmass": "551,695 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 67564251,
+        "currency_ranking": 7,
+        "main_sport": "Football",
+        "flag_colors": ["blue", "white", "red"],
+        "average_skin_color": "light",
+        "average_iq": 98,
+        "average_height": 176.5,
+        "average_weight": 77.5
+        }
+    },
+    {
+        "name": "Germany",
+        "hints": {
+        "landmass": "357,022 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 83129285,
+        "currency_ranking": 4,
+        "main_sport": "Football",
+        "flag_colors": ["black", "red", "yellow"],
+        "average_skin_color": "light",
+        "average_iq": 102,
+        "average_height": 180.0,
+        "average_weight": 82.0
+        }
+    },
+    {
+        "name": "Greece",
+        "hints": {
+        "landmass": "131,957 km²",
+        "religion": "Eastern Orthodoxy",
+        "continent": "Europe",
+        "population": 10724599,
+        "currency_ranking": 44,
+        "main_sport": "Football",
+        "flag_colors": ["blue", "white"],
+        "average_skin_color": "light",
+        "average_iq": 92,
+        "average_height": 177.0,
+        "average_weight": 82.0
+        }
+    },
+    {
+        "name": "Georgia",
+        "hints": {
+        "landmass": "69,700 km²",
+        "religion": "Christianity",
+        "continent": "Europe/Asia",
+        "population": 3716858,
+        "currency_ranking": 88,
+        "main_sport": "Football",
+        "flag_colors": ["white", "red"],
+        "average_skin_color": "light",
+        "average_iq": 94,
+        "average_height": 175.0,
+        "average_weight": 79.0
+        }
+    },
+    {
+        "name": "Hungary",
+        "hints": {
+        "landmass": "93,030 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 9684679,
+        "currency_ranking": 59,
+        "main_sport": "Football",
+        "flag_colors": ["red", "white", "green"],
+        "average_skin_color": "light",
+        "average_iq": 99,
+        "average_height": 177.0,
+        "average_weight": 80.0
+        }
+    },
+    {
+        "name": "Iceland",
+        "hints": {
+        "landmass": "103,000 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 343599,
+        "currency_ranking": 67,
+        "main_sport": "Football",
+        "flag_colors": ["blue", "white", "red"],
+        "average_skin_color": "light",
+        "average_iq": 101,
+        "average_height": 180.0,
+        "average_weight": 82.0
+        }
+    },
+    {
+        "name": "Ireland",
+        "hints": {
+        "landmass": "70,273 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 5029158,
+        "currency_ranking": 23,
+        "main_sport": "Gaelic Football",
+        "flag_colors": ["green", "white", "orange"],
+        "average_skin_color": "light",
+        "average_iq": 98,
+        "average_height": 178.5,
+        "average_weight": 80.0
+        }
+    },
+    {
+        "name": "Italy",
+        "hints": {
+        "landmass": "301,340 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 59554023,
+        "currency_ranking": 8,
+        "main_sport": "Football",
+        "flag_colors": ["green", "white", "red"],
+        "average_skin_color": "light",
+        "average_iq": 102,
+        "average_height": 176.0,
+        "average_weight": 77.0
+        }
+    },
+    {
+        "name": "Kosovo",
+        "hints": {
+        "landmass": "10,887 km²",
+        "religion": "Islam",
+        "continent": "Europe",
+        "population": 1831000,
+        "currency_ranking": 93,
+        "main_sport": "Football",
+        "flag_colors": ["blue", "yellow", "white"],
+        "average_skin_color": "light to olive",
+        "average_iq": 90,
+        "average_height": 177.0,
+        "average_weight": 78.0
+        }
+    },
+    {
+        "name": "Latvia",
+        "hints": {
+        "landmass": "64,589 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 1873784,
+        "currency_ranking": 69,
+        "main_sport": "Ice Hockey",
+        "flag_colors": ["red", "white"],
+        "average_skin_color": "light",
+        "average_iq": 97,
+        "average_height": 180.5,
+        "average_weight": 79.0
+        }
+    },
+    {
+        "name": "Lithuania",
+        "hints": {
+        "landmass": "65,300 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 2722289,
+        "currency_ranking": 73,
+        "main_sport": "Basketball",
+        "flag_colors": ["yellow", "green", "red"],
+        "average_skin_color": "light",
+        "average_iq": 98,
+        "average_height": 181.0,
+        "average_weight": 80.0
+        }
+    },
+    {
+        "name": "Liechtenstein",
+        "hints": {
+            "landmass": "160 km²",
+            "religion": "Christianity",
+            "continent": "Europe",
+            "population": 38749,
+            "currency_ranking": 43,
+            "main_sport": "Football",
+            "flag_colors": ["blue", "red", "yellow"],
+            "average_skin_color": "light",
+            "average_iq": 101,
+            "average_height": 178.0,
+            "average_weight": 79.0
+        }
+    },
+    {
+        "name": "Luxembourg",
+        "hints": {
+        "landmass": "2,586 km²",
+        "religion": "Christianity",
+        "continent": "Europe",
+        "population": 645397,
+        "currency_ranking": 5,
+        "main_sport": "Football",
+        "flag_colors": ["red", "white", "blue"],
+        "average_skin_color": "light",
+        "average_iq": 101,
+        "average_height": 177.0,
+        "average_weight": 78.0
+        }
+    }
+
+]
