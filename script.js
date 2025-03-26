@@ -1,121 +1,161 @@
-// Global variables
+// Game Configuration
 let gameData = [];
 let selectedItem = null;
 let remainingHintTypes = [];
 let hintInterval = null;
+let countdownTimer = 60;
+let countdownInterval = null;
+let pastGuesses = [];
+let usedHints = [];
 
-// --- Navigation Functions ---
-document.getElementById("playButton").addEventListener("click", () => {
-    document.getElementById("startMenu").style.display = "none";
-    document.getElementById("categorySelection").style.display = "block";
-});
-
-const categoryButtons = document.querySelectorAll(".categoryBtn");
-categoryButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        const category = btn.getAttribute("data-category");
-        loadData(category);
-        document.getElementById("categorySelection").style.display = "none";
-        document.getElementById("gameContainer").style.display = "block";
-    });
-});
-
-// --- Data Loading Functions ---
-function loadData(category) {
-    const file = category === "countries" ? "countries.json" : "games.json";
-    fetch(file)
-        .then(response => response.json())
-        .then(data => {
-            gameData = data;
-            pickRandomItem();
-        })
-        .catch(error => console.error("Error loading data:", error));
+// Utility Functions
+function getElement(id) {
+    return document.getElementById(id);
 }
 
+function showElement(id) {
+    getElement(id).style.display = "block";
+}
+
+function hideElement(id) {
+    getElement(id).style.display = "none";
+}
+
+function updateText(id, text) {
+    getElement(id).innerText = text;
+}
+
+// Initialize Game
+function initializeGame() {
+    const playButton = getElement("playButton");
+    playButton.addEventListener("click", () => {
+        hideElement("startMenu");
+        showElement("categorySelection");
+    });
+
+    const categoryButtons = document.querySelectorAll(".categoryBtn");
+    categoryButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            const category = btn.getAttribute("data-category");
+            startGame(category);
+        });
+    });
+}
+
+// Dynamic Data Loading
+async function loadData(category) {
+    const file = `${category}.json`;
+    try {
+        const response = await fetch(file);
+        if (!response.ok) throw new Error(`Failed to load ${file}`);
+        gameData = await response.json();
+        pickRandomItem();
+    } catch (error) {
+        console.error("Error loading data:", error);
+    }
+}
+
+// Game Start
+function startGame(category) {
+    loadData(category);
+    hideElement("categorySelection");
+    showElement("gameContainer");
+    startCountdown();
+}
+
+// Countdown Timer
+function startCountdown() {
+    countdownTimer = 60;
+    updateTimerDisplay();
+    countdownInterval = setInterval(() => {
+        countdownTimer--;
+        updateTimerDisplay();
+        if (countdownTimer <= 0) endGame(false);
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    updateText("timer", `Time Left: ${countdownTimer}s`);
+}
+
+// End Game
+function endGame(won) {
+    clearInterval(hintInterval);
+    clearInterval(countdownInterval);
+    updateText("result", won ? "You Win!" : "You Lose!");
+    setTimeout(() => {
+        hideElement("gameContainer");
+        showElement("categorySelection");
+    }, 3000);
+}
+
+// Pick a Random Item
 function pickRandomItem() {
     const randomIndex = Math.floor(Math.random() * gameData.length);
     selectedItem = gameData[randomIndex];
     remainingHintTypes = Object.keys(selectedItem.hints);
-
-    // Clear previous UI
-    document.getElementById("hints").innerText = "";
-    document.getElementById("hintOptions").innerHTML = "";
-    document.getElementById("result").innerText = "";
-    document.getElementById("guessInput").value = "";
-
-    // Clear any previous hint interval
-    if (hintInterval) {
-        clearInterval(hintInterval);
-    }
-
-    // Start hint generation
+    pastGuesses = [];
+    usedHints = [];
+    updateText("hints", "");
+    updateText("pastGuesses", "Past Guesses:");
+    updateText("usedHints", "Used Hints:");
+    getElement("guessInput").value = "";
+    clearInterval(hintInterval);
     hintInterval = setInterval(showHintOptions, 10000);
     showHintOptions();
 }
 
-// --- Hint Functions ---
+// Show Hint Options
 function showHintOptions() {
-    const hintOptionsDiv = document.getElementById("hintOptions");
-    hintOptionsDiv.innerHTML = "";
-
     if (remainingHintTypes.length === 0) {
         clearInterval(hintInterval);
         return;
     }
-
-    const hintsToShow = [];
-    const hintCount = Math.min(3, remainingHintTypes.length);
-    const availableHints = [...remainingHintTypes];
-
-    for (let i = 0; i < hintCount; i++) {
-        const randIndex = Math.floor(Math.random() * availableHints.length);
-        const hintType = availableHints.splice(randIndex, 1)[0];
-        hintsToShow.push(hintType);
-    }
-
-    hintsToShow.forEach(hintType => {
+    const hintOptionsDiv = getElement("hintOptions");
+    hintOptionsDiv.innerHTML = "";
+    const numOptions = Math.min(3, remainingHintTypes.length);
+    for (let i = 0; i < numOptions; i++) {
+        const hintType = remainingHintTypes.splice(Math.floor(Math.random() * remainingHintTypes.length), 1)[0];
         const btn = document.createElement("button");
         btn.className = "hint-button";
-        btn.innerText = hintType.charAt(0).toUpperCase() + hintType.slice(1);
+        btn.innerText = hintType;
         btn.addEventListener("click", () => {
             displayHint(hintType);
-            remainingHintTypes = remainingHintTypes.filter(h => h !== hintType);
+            usedHints.push(hintType);
+            updateUsedHints();
+            countdownTimer -= 5;
+            updateTimerDisplay();
             hintOptionsDiv.innerHTML = "";
         });
         hintOptionsDiv.appendChild(btn);
-    });
+    }
 }
 
+// Display the Hint
 function displayHint(hintType) {
-    let hintValue = selectedItem.hints[hintType];
-
-    if (Array.isArray(hintValue)) {
-        hintValue = hintValue.join(", ");
-    } else if (typeof hintValue === "object") {
-        hintValue = JSON.stringify(hintValue);
-    }
-
-    const hintText = `${hintType.charAt(0).toUpperCase() + hintType.slice(1)}: ${hintValue}`;
-    const hintsDiv = document.getElementById("hints");
-    hintsDiv.innerText += hintText + "\n";
+    const hintValue = Array.isArray(selectedItem.hints[hintType]) ? selectedItem.hints[hintType].join(", ") : String(selectedItem.hints[hintType]);
+    updateText("hints", `${hintType}: ${hintValue}`);
 }
 
-// --- Guess Checking ---
+// Update Used Hints
+function updateUsedHints() {
+    updateText("usedHints", "Used Hints: " + usedHints.join(", "));
+}
+
+// Check Guess
 function checkGuess() {
-    const userGuess = document.getElementById("guessInput").value.trim().toLowerCase();
-    const correctAnswer = selectedItem.name.toLowerCase();
-
-    if (userGuess === correctAnswer) {
-        document.getElementById("result").innerText = "Correct!";
-        clearInterval(hintInterval);
-    } else {
-        document.getElementById("result").innerText = "Try again!";
-    }
+    const userGuess = getElement("guessInput").value.trim().toLowerCase();
+    pastGuesses.push(userGuess);
+    updateText("pastGuesses", "Past Guesses: " + pastGuesses.join(", "));
+    if (userGuess === selectedItem.name.toLowerCase()) endGame(true);
+    else updateText("result", "Try again!");
 }
 
-document.getElementById("submitGuess").addEventListener("click", checkGuess);
-document.getElementById("guessInput").addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-        checkGuess();
-    }
+// Event Listeners
+getElement("submitGuess").addEventListener("click", checkGuess);
+getElement("guessInput").addEventListener("keypress", (e) => {
+    if (e.key === "Enter") checkGuess();
 });
+
+// Initialize the game on page load
+window.onload = initializeGame;
