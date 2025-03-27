@@ -10,20 +10,38 @@ body {
 }
 
 .screen {
-  width: 90%;
-  max-width: 800px;
+  width: 95%; /* Increased width */
+  max-width: 1200px; /* Increased max width to properly fit three sections */
   text-align: center;
-  padding: 20px;
+  padding: 30px; /* Increased padding for more spacing */
   background: white;
-  border-radius: 10px;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow */
+}
+
+.game-layout {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px; /* Increased gap between sections */
+  flex-wrap: nowrap; /* Prevent sections from wrapping */
+}
+
+.left-section, .middle-section, .right-section {
+  flex: 1;
+  padding: 30px; /* Increased padding for a more spacious feel */
+  background: white;
+  border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  margin: 5px;
+  min-width: 320px; /* Ensures the boxes have enough space to expand */
+  max-width: 380px; /* Prevents the box from being too wide */
 }
 
 input, button {
-  padding: 10px;
-  margin: 5px;
-  font-size: 16px;
-  border-radius: 5px;
+  padding: 15px;
+  margin: 8px;
+  font-size: 18px;
+  border-radius: 8px;
   border: none;
 }
 
@@ -31,53 +49,64 @@ button {
   background: #74ebd5;
   color: white;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background 0.3s, transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 button:hover {
   background: #60c4b4;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 #hints {
   margin-top: 20px;
   white-space: pre-wrap;
   font-style: italic;
+  font-size: 20px;
 }
 
 #result {
-  margin-top: 15px;
+  margin-top: 20px;
   font-weight: bold;
+  font-size: 22px;
 }
 
 .hint-button {
-  padding: 8px 12px;
-  margin: 5px;
-  font-size: 14px;
+  padding: 12px 16px;
+  margin: 8px;
+  font-size: 16px;
   background-color: #6c757d;
   color: white;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.2s, transform 0.1s ease, box-shadow 0.1s ease;
 }
 
 .hint-button:hover {
   background-color: #5a6268;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-#timer {
-  font-size: 24px;
+#timer, #hintTimer, #answerLength {
+  font-size: 28px;
   font-weight: bold;
-  margin: 15px 0;
+  margin: 20px 0;
 }
 
 .info-box {
-  width: 250px;
+  width: 280px; /* Increased box width to accommodate content */
   background: #f4f4f4;
-  border-radius: 10px;
-  margin: 10px auto;
-  padding: 10px;
+  border-radius: 12px;
+  margin: 15px auto;
+  padding: 15px;
   text-align: left;
   overflow-y: auto;
-  max-height: 200px;
+  max-height: 300px;
 }

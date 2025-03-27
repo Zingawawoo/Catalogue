@@ -2,13 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Guess the Item!</title>
+    <title>Catalogue</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+    button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    button:active {
+        transform: translateY(0);
+        box-shadow: none;
+    }
+    </style>
 </head>
 <body>
     <!-- Start Menu -->
     <div id="startMenu" class="screen">
-        <h1>Welcome to the Guessing Game!</h1>
+        <h1>Welcome to Catalogue!</h1>
         <button id="playButton">Play</button>
     </div>
 
@@ -21,15 +33,30 @@
 
     <!-- Game Screen -->
     <div id="gameContainer" class="screen" style="display: none;">
-        <h2>Guess the Item!</h2>
-        <div id="timer">Time Left: 60s</div>
-        <input type="text" id="guessInput" placeholder="Enter your guess">
-        <button id="submitGuess">Submit</button>
-        <div id="result"></div>
-        <div id="hints"></div>
-        <div id="hintOptions"></div>
-        <div id="pastGuesses" class="info-box">Past Guesses:</div>
-        <div id="usedHints" class="info-box">Used Hints:</div>
+        <div class="game-layout">
+
+            <!-- Left Section: Previous Guesses and Score -->
+            <div class="left-section">
+                <div id="score">Score: 100</div>
+                <div id="pastGuesses" class="info-box">Past Guesses:</div>
+            </div>
+
+            <!-- Middle Section: Guess Input and Answer Length -->
+            <div class="middle-section">
+                <h2 id="guessTitle">Guess the Item!</h2>
+                <div id="answerLength">Answer Length: ?</div>
+                <input type="text" id="guessInput" placeholder="Enter your guess">
+                <button id="submitGuess">Submit</button>
+                <div id="result"></div>
+            </div>
+
+            <!-- Right Section: Hints and Hint Options -->
+            <div class="right-section">
+                <div id="hints" class="info-box">Hints:</div>
+                <div id="hintOptions" class="info-box">Hint Options:</div>
+                <div id="usedHints" class="info-box">Used Hints:</div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>

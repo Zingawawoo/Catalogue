@@ -2,9 +2,7 @@
 let gameData = [];
 let selectedItem = null;
 let remainingHintTypes = [];
-let hintInterval = null;
-let countdownTimer = 60;
-let countdownInterval = null;
+let score = 100;
 let pastGuesses = [];
 let usedHints = [];
 
@@ -23,6 +21,20 @@ function hideElement(id) {
 
 function updateText(id, text) {
     getElement(id).innerText = text;
+}
+
+function updateScoreDisplay() {
+    updateText("score", `Score: ${score}`);
+}
+
+// End Game
+function endGame(won) {
+    updateText("result", won ? "You Win!" : "You Lose!");
+    setTimeout(() => {
+        hideElement("gameContainer");
+        updateText("result", "");
+        showElement("categorySelection");
+    }, 3000);
 }
 
 // Initialize Game
@@ -57,36 +69,12 @@ async function loadData(category) {
 
 // Game Start
 function startGame(category) {
+    document.title = `Catalogue - ${category[0].toUpperCase()}${category.slice(1)}`;
+    updateText("guessTitle", `${category[0].toUpperCase()}${category.slice(1)}`);
     loadData(category);
     hideElement("categorySelection");
     showElement("gameContainer");
-    startCountdown();
-}
-
-// Countdown Timer
-function startCountdown() {
-    countdownTimer = 60;
-    updateTimerDisplay();
-    countdownInterval = setInterval(() => {
-        countdownTimer--;
-        updateTimerDisplay();
-        if (countdownTimer <= 0) endGame(false);
-    }, 1000);
-}
-
-function updateTimerDisplay() {
-    updateText("timer", `Time Left: ${countdownTimer}s`);
-}
-
-// End Game
-function endGame(won) {
-    clearInterval(hintInterval);
-    clearInterval(countdownInterval);
-    updateText("result", won ? "You Win!" : "You Lose!");
-    setTimeout(() => {
-        hideElement("gameContainer");
-        showElement("categorySelection");
-    }, 3000);
+    updateScoreDisplay();
 }
 
 // Pick a Random Item
@@ -99,36 +87,49 @@ function pickRandomItem() {
     updateText("hints", "");
     updateText("pastGuesses", "Past Guesses:");
     updateText("usedHints", "Used Hints:");
+    updateText("answerLength", `Answer Length: ${selectedItem.name.length}`);
     getElement("guessInput").value = "";
-    clearInterval(hintInterval);
-    hintInterval = setInterval(showHintOptions, 10000);
     showHintOptions();
 }
 
 // Show Hint Options
 function showHintOptions() {
-    if (remainingHintTypes.length === 0) {
-        clearInterval(hintInterval);
-        return;
-    }
     const hintOptionsDiv = getElement("hintOptions");
     hintOptionsDiv.innerHTML = "";
-    const numOptions = Math.min(3, remainingHintTypes.length);
-    for (let i = 0; i < numOptions; i++) {
-        const hintType = remainingHintTypes.splice(Math.floor(Math.random() * remainingHintTypes.length), 1)[0];
+    remainingHintTypes.forEach(hintType => {
         const btn = document.createElement("button");
         btn.className = "hint-button";
         btn.innerText = hintType;
+        btn.title = `Use this hint for -5 points (Current Score: ${score})`;
         btn.addEventListener("click", () => {
-            displayHint(hintType);
-            usedHints.push(hintType);
-            updateUsedHints();
-            countdownTimer -= 5;
-            updateTimerDisplay();
-            hintOptionsDiv.innerHTML = "";
+            useHint(hintType);
+            showHintOptions(); // Refresh hint options after using one
         });
         hintOptionsDiv.appendChild(btn);
-    }
+    });
+    const rerollButton = document.createElement("button");
+    rerollButton.className = "hint-button";
+    rerollButton.innerText = "Reroll Hints";
+    rerollButton.title = `Reroll all hints for -10 points (Current Score: ${score})`;
+    rerollButton.addEventListener("click", rerollHints);
+    hintOptionsDiv.appendChild(rerollButton);
+}
+
+// Use a Hint
+function useHint(hintType) {
+    score -= 5;
+    updateScoreDisplay();
+    displayHint(hintType);
+    usedHints.push(`${hintType}: ${selectedItem.hints[hintType]}`);
+    updateUsedHints();
+}
+
+// Reroll Hints
+function rerollHints() {
+    score -= 10;
+    updateScoreDisplay();
+    remainingHintTypes = Object.keys(selectedItem.hints);
+    showHintOptions();
 }
 
 // Display the Hint
@@ -137,7 +138,7 @@ function displayHint(hintType) {
     updateText("hints", `${hintType}: ${hintValue}`);
 }
 
-// Update Used Hints
+// Update Used Hints Display
 function updateUsedHints() {
     updateText("usedHints", "Used Hints: " + usedHints.join(", "));
 }
@@ -147,8 +148,11 @@ function checkGuess() {
     const userGuess = getElement("guessInput").value.trim().toLowerCase();
     pastGuesses.push(userGuess);
     updateText("pastGuesses", "Past Guesses: " + pastGuesses.join(", "));
-    if (userGuess === selectedItem.name.toLowerCase()) endGame(true);
-    else updateText("result", "Try again!");
+    if (userGuess === selectedItem.name.toLowerCase()) {
+        endGame(true);
+    } else {
+        updateText("result", "Try again!");
+    }
 }
 
 // Event Listeners
